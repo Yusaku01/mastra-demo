@@ -1,4 +1,4 @@
-import "dotenv/config";
+import "dotenv/config"; // .env ファイルを読み込むために追加
 import { textToTs } from "./tools/textToTs";
 
 // コマンドライン引数からプロンプトを取得
@@ -10,12 +10,23 @@ if (!prompt) {
   process.exit(1);
 }
 
-(async () => {
+async function main() {
   try {
-    const { code } = await textToTs.execute({ input: { prompt } } as any);
-    console.log("Generated TypeScript:\n" + code);
-  } catch (err) {
-    console.error("生成中にエラーが発生しました:", err);
+    const executionInput = { input: { prompt } };
+
+    // CLIからの直接実行のため、as any を使用
+    const result = await textToTs.execute(executionInput as any);
+
+    if (result && result.code) {
+      console.log("Generated TypeScript code:");
+      console.log(result.code);
+    } else {
+      console.error("Failed to generate TypeScript code. No result or code property found.");
+    }
+  } catch (error) {
+    console.error("Error generating TypeScript code:", error);
     process.exit(1);
   }
-})();
+}
+
+main();
