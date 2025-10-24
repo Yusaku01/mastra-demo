@@ -1,19 +1,32 @@
 {
-  "name": "mastra-demo",
-  "version": "0.1.0",
-  "type": "module",
+  "name": "mastra-new",
+  "version": "1.0.0",
+  "main": "index.js",
   "scripts": {
-    "start": "tsx src/index.ts"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
   },
   "dependencies": {
-    "@mastra/core": "latest",
-    "dotenv": "^16.5.0",
-    "openai": "latest",
-    "zod": "latest"
+    "@mastra/core": "^0.22.2",
+    "@mastra/evals": "^0.14.1",
+    "@mastra/libsql": "^0.16.0",
+    "@mastra/loggers": "^0.10.17",
+    "@mastra/memory": "^0.15.8",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "ts-node": "^10.9.1",
-    "tsx": "^4.19.4",
-    "typescript": "^5.4.0"
+    "@types/node": "^24.9.1",
+    "mastra": "^0.17.3",
+    "typescript": "^5.9.3"
   }
 }
