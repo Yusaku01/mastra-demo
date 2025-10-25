@@ -4,6 +4,7 @@ import { VercelDeployer } from "@mastra/deployer-vercel";
 // import { LibSQLStore } from '@mastra/libsql';
 import { weatherWorkflow } from "./workflows/weather-workflow";
 import { weatherAgent } from "./agents/weather-agent";
+import { basicAuthMiddleware } from "./middleware/basic-auth";
 import {
   toolCallAppropriatenessScorer,
   completenessScorer,
@@ -13,6 +14,10 @@ import {
 export const mastra = new Mastra({
   workflows: { weatherWorkflow },
   agents: { weatherAgent },
+  server: {
+    // Apply Basic Auth to all routes when env creds exist
+    middleware: basicAuthMiddleware,
+  },
   deployer: new VercelDeployer(),
   scorers: {
     toolCallAppropriatenessScorer,

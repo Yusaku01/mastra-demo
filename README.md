@@ -73,17 +73,18 @@ pnpm start
 
 ## 🔐 Vercelへのデプロイ
 
-このプロジェクトには、Basic認証によるセキュリティ保護機能が実装されています。
+このプロジェクトにはBasic認証が実装されており、Vercelにデプロイすると全エンドポイントが保護されます。
 
-詳細なデプロイ手順とセキュリティ設定については、**[DEPLOYMENT.md](./DEPLOYMENT.md)** を参照してください。
+デプロイの要点:
 
-### デプロイ時の重要事項
-
-1. **環境変数の設定**: `OPENAI_API_KEY`, `BASIC_AUTH_USER`, `BASIC_AUTH_PASSWORD` を設定
-2. **強力なパスワード**: セキュリティのため、強力なパスワードを使用
-3. **認証の確認**: デプロイ後、Basic認証が正しく動作することを確認
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone)
+1. 環境変数をVercelのProject Settingsで設定する
+   - `OPENAI_API_KEY`
+   - `BASIC_AUTH_USER`（例: dev=mastra-demo-dev / stg=mastra-demo-stg / prod=mastra-demo-pro）
+   - `BASIC_AUTH_PASSWORD`（例: @fnileak;c）
+2. vercel.json のコマンドは pnpm に統一済み（install/build/dev）。
+3. デプロイ後、認証を確認する
+   - 認証なし: `curl -i https://<your-app>.vercel.app/api/agents` → 401
+   - 認証あり: `curl -u <user>:'<pass>' https://<your-app>.vercel.app/api/agents` → 200
 
 ## 🛠️ 開発
 
@@ -109,7 +110,7 @@ Mastraは自動的に以下のエンドポイントを生成します：
 - `/api/workflows/weatherWorkflow` - Weather Workflowエンドポイント
 - `/api/tools/weatherTool` - Weather Toolエンドポイント
 
-**注意**: すべてのエンドポイントはBasic認証で保護されています（Vercelデプロイ時）
+**注意**: すべてのエンドポイントはBasic認証で保護されています（Vercelデプロイ時）。
 
 ## 🧪 Weather Agent の使い方
 
@@ -192,8 +193,8 @@ export const yourAgent = new Agent({
 
 問題が発生した場合は、以下を確認してください：
 
-1. [DEPLOYMENT.md](./DEPLOYMENT.md) - デプロイメントガイド
-2. [Mastra Docs](https://mastra.ai/docs) - Mastraの公式ドキュメント
+1. [Mastra Docs](https://mastra.ai/docs)
+2. [Vercel Docs](https://vercel.com/docs)
 3. Issue - 問題を報告
 
 ---

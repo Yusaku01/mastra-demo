@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
+  "buildCommand": "pnpm run build",
+  "devCommand": "pnpm run dev",
   "installCommand": "pnpm install",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- src api package.json pnpm-lock.yaml vercel.json",
   "framework": null,
   "outputDirectory": ".mastra",
   "env": {
