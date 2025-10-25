@@ -7,3 +7,6 @@ dist
 *.db
 *.db-*
 .pnpm-store/
+.vercel
+*.log
+build.log
